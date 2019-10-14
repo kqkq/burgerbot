@@ -1,6 +1,6 @@
 const req = require('request-promise-native');
 const j = req.jar();
-const request = req.defaults({jar: j});
+const request = req.defaults({jar: j, followAllRedirects: true});
 const baseUrl = 'https://tellburgerking.com.cn';
 
 const survey_data = [{
@@ -86,7 +86,11 @@ async function proceed(survey_code) {
     if(target) console.log(`Survey page ${i + 1} / ${survey_data.length} (${per}%) submitted`);
   }
 
-  res = await request.get(`${baseUrl}/${target}`);
+  res = await request.post(`${baseUrl}/${target}`, {form: {
+    S076000: '100000',
+    IoNF: '318',
+    PostedFNS: 'S076000'
+  }});
   let val_code = /<p class="ValCode">验证代码：(.*)<\/p>/.exec(res)[1];
   if(val_code) console.log('Validation code issued');
 
