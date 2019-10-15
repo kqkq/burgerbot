@@ -4,13 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha test --timeout 60000"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.7"
+    "request-promise-native": "^1.0.7",
+    "yargs": "^14.2.0"
   },
   "devDependencies": {
     "mocha": "^6.2.1"
